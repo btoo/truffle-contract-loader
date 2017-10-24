@@ -23,28 +23,23 @@ module.exports = function(contents){
 
 
   const callback = this.async()
-  const truffleCompileOptions = {
-    ...options
-    // working_directory: './niqua',
-    // contracts_directory: './contracts',
-    // contracts_build_directory: './built-contracts',
-    // // resolver: {
-    // //   require: fn => require(`${__dirname}/contracts/${fn}`)
-    // // },
-    // // resolver: require,
-    // resolver: {
-    //   resolve: fn => require(`${__dirname}/${fn}.js`),
-    //   require: fn => require(`${__dirname}/${fn}.js`)
-    // },
-    // solc // this might not be right
-  }
+  const truffleCompileOptions = options
   
   truffleCompile([flattenedSolidityFile], truffleCompileOptions, (err, artifact) => {
-    // if(err) return callback(err)
-    if(err) console.log('omg there was', err)
-
-    console.log('returning', err, artifact)
-    callback(err, artifact)
+    if(err) return callback(err)
+    const resultStr = JSON.stringify(artifact)
+    callback(err, `
+      console.log('how many')
+      window.contractObj = window.contractObj || (_ => {
+        console.log('times')
+        var contract = require('truffle-contract')
+        var contractObjs = JSON.parse('${resultStr}'.replace(/(\\r\\n|\\n|\\r)/gm,""))
+        var contractObj = Object.values(contractObjs).map(co => contract(co))[0]
+        return contractObj
+      })()
+      console.log('same', contractObj)
+      module.exports = contractObj
+    `)
   })
 
   

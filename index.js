@@ -27,14 +27,20 @@ module.exports = function(contents){
   
   truffleCompile([flattenedSolidityFile], truffleCompileOptions, (err, artifact) => {
     if(err) return callback(err)
-    const resultStr = JSON.stringify(artifact)
+    const resultStr = `'${
+      JSON.stringify(artifact)
+        .replace(/\\"/gi, '\\\\"')
+        .replace(/(\\r\\n|\\n|\\r)/gm,'')
+    }'`
+    
     callback(err, `
       console.log('how many')
       window.contractObj = window.contractObj || (_ => {
         console.log('times')
         var contract = require('truffle-contract')
-        var contractObjs = JSON.parse('${resultStr}'.replace(/(\\r\\n|\\n|\\r)/gm,""))
+        var contractObjs = JSON.parse(${resultStr})
         var contractObj = Object.values(contractObjs).map(co => contract(co))[0]
+        console.log(contractObj)
         return contractObj
       })()
       console.log('same', contractObj)

@@ -41,8 +41,8 @@ module.exports = function(contents){
   
   truffleCompile([flattenedSolidityFile], truffleCompileOptions, (err, artifact) => {
     // if(err) return callback(err)
-    if(err) return console.log('omg there was', err)
-    
+    if(err) console.log('omg there was', err)
+
     callback(err, artifact)
   })
 

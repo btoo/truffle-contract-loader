@@ -43,6 +43,7 @@ module.exports = function(contents){
     // if(err) return callback(err)
     if(err) console.log('omg there was', err)
 
+    console.log('returning', err, artifact)
     callback(err, artifact)
   })
 

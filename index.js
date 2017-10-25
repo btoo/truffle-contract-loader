@@ -34,15 +34,16 @@ module.exports = function(contents){
 
     compilationFinished(err, `
       var truffleContract = require('truffle-contract')
-      var contractName = '${contractName}'
+        , contracts = require('truffle-contract-loader/contracts')
+        , contractName = '${contractName}'
 
-      if(!window[contractName]){
+      if(!contracts[contractName]){
         var artifacts = JSON.parse(${artifactString})
         var artifact = artifacts['${contractName}']
-        window[contractName] = truffleContract(artifact)
+        contracts[contractName] = truffleContract(artifact)
       }
 
-      module.exports = window[contractName]
+      module.exports = contracts[contractName]
     `)
 
   })

@@ -12,6 +12,7 @@
     "semver": "^5.3.0",
     "solidity-parser": "^0.3.0",
     "truffle-contract": "^3.0.0",
-    "truffle-compile": "file:node_modules/truffle-compile"
+    "truffle-compile": "file:node_modules/truffle-compile",
+    "jsonic": "^0.3.0"
   }
 }

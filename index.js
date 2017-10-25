@@ -1,5 +1,5 @@
 const path = require('path')
-    , flatten = require('./flatten')
+    , merge = require('./merge')
     , truffleCompile = require('truffle-compile')
     , loaderUtils = require('loader-utils')
 
@@ -14,7 +14,7 @@ module.exports = function(contents){
   * just reduce each tree down to its own single, concatenated file
   */
   const file = this.resourcePath
-  const flattenedSolidityFile = flatten({
+  const mergedSolidityFile = merge({
     ...options,
     file
   })
@@ -25,34 +25,25 @@ module.exports = function(contents){
   const compilationFinished = this.async()
   const truffleCompileOptions = options
 
-  truffleCompile([flattenedSolidityFile], truffleCompileOptions, (err, artifact) => {
+  truffleCompile([mergedSolidityFile], truffleCompileOptions, (err, artifact) => {
 
     if(err) return compilationFinished(err)
     const artifactString = `\`${
       JSON.stringify(artifact)
-        .replace(/\\"/gi, '\\\\"')
-        .replace(/(\\r\\n|\\n|\\r)/gm,'')
+        .replace(/(\\r\\n|\\n|\\r)/gm,'') // flatten
+        .replace(/\\/gi, '\\\\') // escape
     }\``
 
     compilationFinished(err, `
-      console.log(String.raw${artifactString})
       const truffleContract = require('truffle-contract')
-      console.log('how many')
       const contractName = '${contractName}'
+
       if(!window[contractName]){
         const artifacts = JSON.parse(${artifactString})
         const artifact = artifacts['${contractName}']
         window[contractName] = truffleContract(artifact)
       }
 
-      // window.contractObj = window.contractObj || (_ => {
-      //   console.log('times')
-      //   const contractObj = Object.values(contractObjs).map(co => contract(co))[0]
-      //   console.log(contractObjs)
-      //   // console.log(contractObj)
-      //   return contractObj
-      // })()
-      // console.log('same', contractObj)
       module.exports = window[contractName]
     `)
 

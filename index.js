@@ -10,10 +10,10 @@ module.exports = function(contents){
     , file = this.resourcePath
 
   /**
-  * to avoid having to save contract artifacts into their
-  * own js fileswhenever a .sol dependency tree exists,
-  * just reduce each tree down to its own single, concatenated file
-  */
+   * to avoid having to save contract artifacts into their
+   * own js fileswhenever a .sol dependency tree exists,
+   * just reduce each tree down to its own single, concatenated file
+   */
   var mergedSolidityFile = merge({
     ...options,
     file
@@ -24,8 +24,8 @@ module.exports = function(contents){
     , compilationFinished = this.async()
 
   truffleCompile([mergedSolidityFile], options, function(err, artifact){
-
     if(err) return compilationFinished(err)
+
     var artifactString = `\`${
       JSON.stringify(artifact)
         .replace(/(\\r\\n|\\n|\\r)/gm,'') // flatten

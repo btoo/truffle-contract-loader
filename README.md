@@ -1,6 +1,3 @@
-webpack loader for importing .sol files as truffle contracts using the locally installed version of the truffle-compile package. normally, dependency on locally installed packages should be avoided, but in this case, it gives you the flexibility to use whichever version of truffle-compile (and by extension, solc and solidity version pragma) you'd like.
+webpack loader for import .sol files as truffle contracts using truffle-compile (and by extension, its solc and solidity version pragma).
 
-first install truffle-compile:
-```bash
-yarn add truffle-compile
-```
+additionally, this loader will refrain from creating any pre-compiled contract artifact files. dependency trees are resolved by first merging files (https://github.com/TiesNetwork/solidify) and then feeding the result to the compiler.

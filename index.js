@@ -11,7 +11,7 @@ module.exports = function(contents){
     solc: { // default solc configurations
       optimizer: {
         enabled: true,
-        runs: 500
+        runs: 200
       }
     },
     ...loaderUtils.getOptions(this)

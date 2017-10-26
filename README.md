@@ -22,10 +22,10 @@ module.exports = {
           loader: 'truffle-contract-loader',
           options: {
             contracts_directory: './contracts', // required - the directory containing all your Solidity contracts
-            solc: { // solc compiler options (optional) - more information found here: http://solidity.readthedocs.io/en/develop/using-the-compiler.html
+            solc: { // solc compiler options (optional) - defaults to the following (more information found here: http://solidity.readthedocs.io/en/develop/using-the-compiler.html)
               optimizer: {
                 enabled: true,
-                runs: 500
+                runs: 200
               }
             }
           }

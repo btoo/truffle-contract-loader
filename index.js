@@ -6,14 +6,25 @@ var path = require('path')
 module.exports = function(contents){
 
   this.cacheable && this.cacheable()
-  var options = loaderUtils.getOptions(this)
-    , file = this.resourcePath
-
+  var compilationFinished = this.async()
+  var options = {
+    solc: { // default solc configurations
+      optimizer: {
+        enabled: true,
+        runs: 500
+      }
+    },
+    ...loaderUtils.getOptions(this)
+  }
+  
+  if(!options.contracts_directory) throw 'The contracts_directory property must be provided in the truffle-contract-loader options'
+  
   /**
    * to avoid having to save contract artifacts into their
    * own js fileswhenever a .sol dependency tree exists,
    * just reduce each tree down to its own single, concatenated file
    */
+  var file = this.resourcePath
   var mergedSolidityFile = merge({
     ...options,
     file
@@ -21,7 +32,7 @@ module.exports = function(contents){
 
   var contractFileName = path.basename(this.resourcePath)
     , contractName = contractFileName.charAt(0).toUpperCase() + contractFileName.slice(1, contractFileName.length - 4)
-    , compilationFinished = this.async()
+    
 
   truffleCompile([mergedSolidityFile], options, function(err, artifact){
     if(err) return compilationFinished(err)

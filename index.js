@@ -8,6 +8,7 @@ module.exports = function(contents){
   this.cacheable && this.cacheable()
   var compilationFinished = this.async()
   var options = {
+    nocomment: true,
     solc: { // default solc configurations
       optimizer: {
         enabled: true,
@@ -17,7 +18,7 @@ module.exports = function(contents){
     ...loaderUtils.getOptions(this)
   }
   
-  if(!options.contracts_directory) throw 'The contracts_directory property must be provided in the truffle-contract-loader options'
+  if(!options.contracts_directory) console.error('The contracts_directory property must be provided in the truffle-contract-loader options')
   
   /**
    * to avoid having to save contract artifacts into their

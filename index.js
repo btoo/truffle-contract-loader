@@ -22,7 +22,7 @@ module.exports = function(contents){
   
   /**
    * to avoid having to save contract artifacts into their
-   * own js fileswhenever a .sol dependency tree exists,
+   * own js files whenever a .sol dependency tree exists,
    * just reduce each tree down to its own single, concatenated file
    */
   var file = this.resourcePath

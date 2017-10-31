@@ -34,7 +34,6 @@ module.exports = function(contents){
   var contractFileName = path.basename(this.resourcePath)
     , contractName = contractFileName.charAt(0).toUpperCase() + contractFileName.slice(1, contractFileName.length - 4)
     
-
   truffleCompile([mergedSolidityFile], options, function(err, artifact){
     if(err) return compilationFinished(err)
 

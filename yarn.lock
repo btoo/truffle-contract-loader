@@ -102,6 +102,12 @@ debug@2.2.0:
   dependencies:
     ms "0.7.1"
 
+debug@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-3.1.0.tgz#5bb5a0672628b64149566ba16819e61518c67261"
+  dependencies:
+    ms "2.0.0"
+
 decamelize@^1.1.1:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/decamelize/-/decamelize-1.2.0.tgz#f6534d15148269b20352e7bee26f501f9a191290"
@@ -370,6 +376,10 @@ ms@0.7.1:
   version "0.7.1"
   resolved "https://registry.yarnpkg.com/ms/-/ms-0.7.1.tgz#9cd13c03adbff25b65effde7ce864ee952017098"
 
+ms@2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/ms/-/ms-2.0.0.tgz#5608aeadfc00be6c2901df5f9861788de0d597c8"
+
 node-dir@^0.1.16:
   version "0.1.17"
   resolved "https://registry.yarnpkg.com/node-dir/-/node-dir-0.1.17.tgz#5f5665d93351335caabef8f1c554516cf5f1e4e5"
@@ -513,9 +523,9 @@ sigmund@~1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/sigmund/-/sigmund-1.0.1.tgz#3ff21f198cad2175f9f3b781853fd94d0d19b590"
 
-solc@0.4.17:
-  version "0.4.17"
-  resolved "https://registry.yarnpkg.com/solc/-/solc-0.4.17.tgz#75f93da6bc190becb89f6663076ab943ff95cd2f"
+solc@0.4.18:
+  version "0.4.18"
+  resolved "https://registry.yarnpkg.com/solc/-/solc-0.4.18.tgz#83ac6d871dd16a9710e67dbb76dad7f614100702"
   dependencies:
     fs-extra "^0.30.0"
     memorystream "^0.3.1"
@@ -585,22 +595,23 @@ truffle-blockchain-utils@^0.0.3:
   dependencies:
     web3 "^0.20.1"
 
-truffle-compile@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/truffle-compile/-/truffle-compile-3.0.1.tgz#a6360386f4c31bac457dc525b2a0ae98a5f24b53"
+truffle-compile@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/truffle-compile/-/truffle-compile-3.0.2.tgz#d1933f20d1119c197324497b99513d19bbf79c3e"
   dependencies:
     async "^2.1.4"
     colors "^1.1.2"
+    debug "^3.1.0"
     graphlib "^2.1.1"
-    solc "0.4.17"
+    solc "0.4.18"
     truffle-config "^1.0.2"
     truffle-contract-sources "^0.0.1"
     truffle-error "^0.0.2"
     truffle-expect "^0.0.3"
 
 truffle-config@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/truffle-config/-/truffle-config-1.0.2.tgz#442b54cf1d867e09b88201a7bd8429bcf4a22492"
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/truffle-config/-/truffle-config-1.0.3.tgz#6738cb9e22a5a198d906d2723c8673503f9f0cc0"
   dependencies:
     find-up "^2.1.0"
     lodash "^4.17.4"

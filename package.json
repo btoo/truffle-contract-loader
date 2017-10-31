@@ -1,11 +1,12 @@
 {
   "name": "truffle-contract-loader",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Webpack loader for .sol files using truffle-compile",
   "keywords": [
     "truffle",
     "solidity",
-    "webpack"
+    "webpack",
+    "ethereum"
   ],
   "main": "index.js",
   "scripts": {
@@ -20,7 +21,7 @@
     "loader-utils": "^1.1.0",
     "semver": "^5.3.0",
     "solidity-parser": "^0.3.0",
-    "truffle-compile": "^3.0.1",
+    "truffle-compile": "^3.0.2",
     "truffle-contract": "^3.0.0"
   }
 }
